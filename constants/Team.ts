@@ -1,6 +1,7 @@
 import { TeamInterface, TeamPlayerInterface } from '../interfaces/team.interface';
 
 
+
 export const initialTeamPlayer: TeamPlayerInterface = {
     name: '',
     rating: 50,

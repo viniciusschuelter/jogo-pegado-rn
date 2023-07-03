@@ -9,8 +9,6 @@ export default function ModalScreen() {
       <View style={styles.container}>
         <ImageBackground resizeMode="cover" source={{uri: './assets/images/bg.png'}} style={styles.image}>
           <View style={styles.content}>
-            <Text style={styles.title}>Modal</Text>
-            <View style={styles.separator} />
 
             <Team />
 
