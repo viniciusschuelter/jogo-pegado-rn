@@ -1,6 +1,5 @@
 import { ImageBackground, StyleSheet } from 'react-native';
 
-import EditScreenInfo from '../../components/EditScreenInfo';
 import { Text, View } from '../../components/Themed';
 
 export default function TabOneScreen() {
@@ -10,7 +9,6 @@ export default function TabOneScreen() {
           <View style={styles.content}>
             <Text style={styles.title}>Tab One</Text>
             <View style={styles.separator} />
-            <EditScreenInfo path="app/(tabs)/index.tsx" />
           </View>
         </ImageBackground>
     </View>
