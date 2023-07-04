@@ -3,6 +3,8 @@ import {TeamInterface, TeamPlayerInterface} from '../interfaces/team.interface';
 import {initialTeam, initialTeamPlayer} from '../constants/Team';
 import { Formik, Form, Field, FieldArray, ErrorMessage, FormikHelpers } from 'formik';
 import { StyleSheet, View } from "react-native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 export default function Team(props: { team: TeamInterface }) {
     const { team = initialTeam } = props;
@@ -28,7 +30,14 @@ export default function Team(props: { team: TeamInterface }) {
                 { setSubmitting }: FormikHelpers<TeamInterface>
             ) => {
                 setTimeout(() => {
-                    alert(JSON.stringify(values, null, 2));
+                    const storeData = async (value) => {
+                        try {
+                            await AsyncStorage.setItem('teams', JSON.stringify(values));
+                        } catch (e) {
+                            // saving error
+                        }
+                    };
+                    console.log(storeData);
                     setSubmitting(false);
                 }, 500);
             }}

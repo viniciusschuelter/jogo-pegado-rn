@@ -1,14 +1,29 @@
 import { ImageBackground, StyleSheet } from 'react-native';
 
 import { Text, View } from '../../components/Themed';
+import { useQuery } from "react-query";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function TabOneScreen() {
+
+  const getTeams = async () => {
+      const res = await AsyncStorage.getItem('teams');
+      return res != null ? JSON.parse(res) : null;
+  };
+
+  const { data, error, isLoading } = useQuery('teams', getTeams);
+
+  console.log(data);
+
   return (
       <View style={styles.container}>
         <ImageBackground resizeMode="cover" source={{uri: './assets/images/bg.png'}} style={styles.image}>
           <View style={styles.content}>
             <Text style={styles.title}>Tab One</Text>
             <View style={styles.separator} />
+            <View style={styles.separator} />
+
+            { data?.teams?.length }
           </View>
         </ImageBackground>
     </View>
