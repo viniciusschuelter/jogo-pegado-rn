@@ -3,6 +3,7 @@ import {ImageBackground, Platform, StyleSheet } from 'react-native';
 
 import { Text, View } from '../components/Themed';
 import Team from "../components/Team";
+import {initialTeam} from "../constants/Team";
 
 export default function ModalScreen() {
   return (
@@ -10,7 +11,7 @@ export default function ModalScreen() {
         <ImageBackground resizeMode="cover" source={{uri: './assets/images/bg.png'}} style={styles.image}>
           <View style={styles.content}>
 
-            <Team />
+            <Team team={initialTeam} />
 
             {/* Use a light status bar on iOS to account for the black space above the modal */}
             <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />

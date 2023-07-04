@@ -1,16 +1,13 @@
 import { ImageBackground, StyleSheet } from 'react-native';
 
 import { Text, View } from '../../components/Themed';
-import { useQuery } from "react-query";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useQuery } from 'react-query';
+import TeamCard from '../../components/TeamCard';
+import { TeamInterface } from '../../interfaces/team.interface';
+import { getTeams } from '../../queries/team.query';
+import TeamEmpty from "../../components/TeamEmpty";
 
 export default function TabOneScreen() {
-
-  const getTeams = async () => {
-      const res = await AsyncStorage.getItem('teams');
-      return res != null ? JSON.parse(res) : null;
-  };
-
   const { data, error, isLoading } = useQuery('teams', getTeams);
 
   console.log(data);
@@ -21,9 +18,10 @@ export default function TabOneScreen() {
           <View style={styles.content}>
             <Text style={styles.title}>Tab One</Text>
             <View style={styles.separator} />
-            <View style={styles.separator} />
 
-            { data?.teams?.length }
+            <div className="row">
+              { data?.length ? data.map( (team: TeamInterface) => <TeamCard key={team.name} team={team} />) : <TeamEmpty /> }
+            </div>
           </View>
         </ImageBackground>
     </View>

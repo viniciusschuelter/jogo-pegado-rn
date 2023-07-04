@@ -4,10 +4,13 @@ import {initialTeam, initialTeamPlayer} from '../constants/Team';
 import { Formik, Form, Field, FieldArray, ErrorMessage, FormikHelpers } from 'formik';
 import { StyleSheet, View } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useQuery} from "react-query";
+import {getTeams} from "../queries/team.query";
 
 
 export default function Team(props: { team: TeamInterface }) {
     const { team = initialTeam } = props;
+    const { data, error, isLoading } = useQuery('teams', getTeams);
 
     return (
         <Formik
@@ -30,14 +33,15 @@ export default function Team(props: { team: TeamInterface }) {
                 { setSubmitting }: FormikHelpers<TeamInterface>
             ) => {
                 setTimeout(() => {
-                    const storeData = async (value) => {
+                    const storeData = async () => {
                         try {
-                            await AsyncStorage.setItem('teams', JSON.stringify(values));
+                            const payload = [...data || [], values];
+                            await AsyncStorage.setItem('teams', JSON.stringify(payload));
                         } catch (e) {
                             // saving error
                         }
                     };
-                    console.log(storeData);
+                    storeData();
                     setSubmitting(false);
                 }, 500);
             }}
@@ -160,6 +164,8 @@ const styles = StyleSheet.create({
     },
     floatButton: {
         position: 'absolute',
+        backgroundColor: 'rgb(50 149 216)',
+        color: '#fff',
         bottom: '0',
         height: '50px',
         width: '100%',
