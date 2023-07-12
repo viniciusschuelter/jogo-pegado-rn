@@ -17,12 +17,12 @@ export default function TabOneScreen() {
 
   return (
       <View style={styles.container}>
-        <ImageBackground resizeMode="cover" source={{uri: './assets/images/bg.png'}} style={styles.image}>
+        <ImageBackground resizeMode="cover" source={require('images/bg.png')}  style={styles.image}>
           <View style={styles.content}>
             <Text style={styles.title}>Tab One</Text>
             <View style={styles.separator} />
 
-            <View className="row">
+            <View>
               { data?.length ? data.map( (team: TeamInterface) => <TeamCard key={team.name} team={team} />) : <TeamEmpty /> }
             </View>
           </View>

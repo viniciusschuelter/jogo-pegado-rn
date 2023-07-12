@@ -28,7 +28,7 @@ import {Label} from "react-query/types/devtools/Explorer";
 // }
 
 
-export default function Login() {
+export default function LoginScreen() {
   // const [phoneNumber, setPhoneNumber] = useState("");
   // const [verificationCode, setVerificationCode] = useState("");
   // const [verificationId, setVerificationId] = useState("");

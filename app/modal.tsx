@@ -11,7 +11,7 @@ const windowHeight = Dimensions.get('window').height;
 export default function ModalScreen() {
   return (
       <View style={styles.container}>
-        <ImageBackground resizeMode="cover" source={{uri: './assets/images/bg.png'}} style={styles.image}>
+        <ImageBackground resizeMode="cover" source={require('images/bg.png')} style={styles.image}>
           <View style={styles.content}>
 
             <Team team={initialTeam} />
@@ -26,7 +26,7 @@ export default function ModalScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1
+    flex: 1
   },
   title: {
     fontSize: 20,
@@ -38,14 +38,13 @@ const styles = StyleSheet.create({
     width: '80%',
   },
   image: {
-    // flex: 1,
-    // flexDirection: 'row',
-    // justifyContent: 'center',
+    flex: 1,
+    justifyContent: 'center',
   },
   content: {
-    // position: 'absolute',
-    // width: windowWidth,
-    // height: windowHeight,
-    // backgroundColor: '#00000070',
+    position: 'absolute',
+    width: windowWidth,
+    height: windowHeight,
+    backgroundColor: '#00000070',
   },
 });

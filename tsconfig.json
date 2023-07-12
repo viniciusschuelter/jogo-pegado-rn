@@ -4,6 +4,11 @@
     "strict": true,
     "lib": [
       "dom"
-    ]
+    ],
+
+    "baseUrl": ".",
+    "paths": {
+      "images/*": ["./assets/images/*"]
+    }
   }
 }

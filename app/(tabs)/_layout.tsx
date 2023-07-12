@@ -44,7 +44,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="two"
+        name="matches"
         options={{
           title: 'Partidas',
           tabBarIcon: ({ color }) => <TabBarIcon name="soccer-ball-o" color={color} />,
