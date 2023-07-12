@@ -3,6 +3,7 @@ import React from 'react';
 import { Text, View } from '../components/Themed';
 import { StyleSheet } from 'react-native';
 
+
 const TeamCard = () => {
 
 
@@ -21,7 +22,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 20,
         fontWeight: 'bold',
-        padding: '32px',
+        // padding: '32px',
         color: '#fff',
         textAlign: 'center'
     },

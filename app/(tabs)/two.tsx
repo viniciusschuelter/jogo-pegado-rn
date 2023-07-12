@@ -1,7 +1,10 @@
-import {ImageBackground, StyleSheet} from 'react-native';
+import {Dimensions, ImageBackground, StyleSheet} from 'react-native';
 
 import EditScreenInfo from '../../components/EditScreenInfo';
 import { Text, View } from '../../components/Themed';
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 export default function TabTwoScreen() {
   return (
@@ -36,8 +39,8 @@ const styles = StyleSheet.create({
   },
   content: {
     position: 'absolute',
-    width: '100vw',
-    height: '100vh',
+    width: windowWidth,
+    height: windowHeight,
     backgroundColor: '#00000070',
   },
 });

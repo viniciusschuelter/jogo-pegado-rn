@@ -1,9 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
-import {ImageBackground, Platform, StyleSheet } from 'react-native';
+import {Dimensions, ImageBackground, Platform, StyleSheet} from 'react-native';
 
 import { Text, View } from '../components/Themed';
 import Team from "../components/Team";
 import {initialTeam} from "../constants/Team";
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 export default function ModalScreen() {
   return (
@@ -23,7 +26,7 @@ export default function ModalScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    // flex: 1
   },
   title: {
     fontSize: 20,
@@ -35,13 +38,14 @@ const styles = StyleSheet.create({
     width: '80%',
   },
   image: {
-    flex: 1,
-    justifyContent: 'center',
+    // flex: 1,
+    // flexDirection: 'row',
+    // justifyContent: 'center',
   },
   content: {
-    position: 'absolute',
-    width: '100vw',
-    height: 'calc(100vh - 64px)',
-    backgroundColor: '#00000070',
+    // position: 'absolute',
+    // width: windowWidth,
+    // height: windowHeight,
+    // backgroundColor: '#00000070',
   },
 });

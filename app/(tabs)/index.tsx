@@ -1,4 +1,4 @@
-import { ImageBackground, StyleSheet } from 'react-native';
+import { ImageBackground, StyleSheet, Dimensions } from 'react-native';
 
 import { Text, View } from '../../components/Themed';
 import { useQuery } from 'react-query';
@@ -6,6 +6,9 @@ import TeamCard from '../../components/TeamCard';
 import { TeamInterface } from '../../interfaces/team.interface';
 import { getTeams } from '../../queries/team.query';
 import TeamEmpty from "../../components/TeamEmpty";
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 export default function TabOneScreen() {
   const { data, error, isLoading } = useQuery('teams', getTeams);
@@ -19,9 +22,9 @@ export default function TabOneScreen() {
             <Text style={styles.title}>Tab One</Text>
             <View style={styles.separator} />
 
-            <div className="row">
+            <View className="row">
               { data?.length ? data.map( (team: TeamInterface) => <TeamCard key={team.name} team={team} />) : <TeamEmpty /> }
-            </div>
+            </View>
           </View>
         </ImageBackground>
     </View>
@@ -47,8 +50,8 @@ const styles = StyleSheet.create({
   },
   content: {
     position: 'absolute',
-    width: '100vw',
-    height: '100vh',
+    width: windowWidth,
+    height: windowHeight,
     backgroundColor: '#00000070',
   },
 });
