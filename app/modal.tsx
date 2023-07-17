@@ -13,7 +13,7 @@ export default function ModalScreen() {
       <View style={styles.container}>
         <ImageBackground resizeMode="cover" source={require('images/bg.png')} style={styles.image}>
           <View style={styles.content}>
-
+            <View style={styles.separator} />
             <Team team={initialTeam} />
 
             {/* Use a light status bar on iOS to account for the black space above the modal */}
@@ -33,9 +33,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
+    marginTop: 20,
   },
   image: {
     flex: 1,

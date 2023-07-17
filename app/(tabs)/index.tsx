@@ -6,6 +6,7 @@ import TeamCard from '../../components/TeamCard';
 import { TeamInterface } from '../../interfaces/team.interface';
 import { getTeams } from '../../queries/team.query';
 import TeamEmpty from "../../components/TeamEmpty";
+import {useCallback} from "react";
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -13,6 +14,7 @@ const windowHeight = Dimensions.get('window').height;
 export default function TabOneScreen() {
   const { data, error, isLoading } = useQuery('teams', getTeams);
 
+  // const { data, error, isLoading } = useCallback(() => useQuery('teams', getTeams), []);
   console.log(data);
 
   return (

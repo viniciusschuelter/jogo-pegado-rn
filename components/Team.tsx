@@ -52,13 +52,19 @@ export default function Team(props: { team: TeamInterface }) {
                         }, 500);
                     }}
                 >
-                    {({values}) => (
+                    {({ handleChange, handleBlur, handleSubmit, values}) => (
                         <View style={styles.container}>
                             <Text>Nome da pelada:</Text>
-                            <TextInput id="name" value={values.name} placeholder="Informe o nome da pelada"/>
+                            <TextInput
+                                placeholder="Informe o nome da pelada"
+                                onChangeText={handleChange('name')}
+                                onBlur={handleBlur('name')}
+                                value={values.name}
+                            />
+                            <ErrorMessage style={styles.error} name="name" component={Text} />
 
                             <FieldArray name="players">
-                                {({insert, remove, push}) => (
+                                {({insert, remove, push, handleReplace}) => (
                                     <View style={styles.players}>
                                         {values.players.length > 0 &&
                                             values.players.map((player, index) => (
@@ -66,27 +72,41 @@ export default function Team(props: { team: TeamInterface }) {
                                                     <View className="col">
                                                         <Text>Nome do jogador:</Text>
                                                         <TextInput
+                                                            onChangeText={(e) => handleReplace(index, {...values.players[index], name: e})}
                                                             value={values.players[index].name}
                                                             placeholder="Informe o nome do jogador"
+                                                        />
+                                                        <ErrorMessage
+                                                            style={styles.error}
+                                                            name={`players.${index}`}
+                                                            component={Text}
                                                         />
                                                     </View>
                                                     <View className="col">
                                                         <Text>Habilidade:</Text>
                                                         <Slider
                                                             style={styles.wFull}
+                                                            step={1}
                                                             minimumValue={0}
                                                             maximumValue={100}
+                                                            onValueChange={(e) => handleReplace(index, {...values.players[index], rating: e})}
                                                             value={values.players[index].rating}
                                                         />
                                                     </View>
                                                     <View style={styles.rowBetween}>
                                                         <View className="col">
                                                             <Text>Goleiro?</Text>
-                                                            <Checkbox value={values.players[index].goalkeeper} />
+                                                            <Checkbox
+                                                                onValueChange={(e) => handleReplace(index, {...values.players[index], goalkeeper: e})}
+                                                                value={values.players[index].goalkeeper}
+                                                            />
                                                         </View>
                                                         <View className="col">
                                                             <Text>Confimado?</Text>
-                                                            <Checkbox value={values.players[index].confirmed} />
+                                                            <Checkbox
+                                                                onValueChange={(e) => handleReplace(index, {...values.players[index], confirmed: e})}
+                                                                value={values.players[index].confirmed}
+                                                            />
                                                         </View>
                                                     </View>
                                                     <View className="col" style={styles.removePlayers}>
@@ -104,7 +124,7 @@ export default function Team(props: { team: TeamInterface }) {
                                 )}
                             </FieldArray>
 
-                            <Button style={styles.floatButton} title="Criar Pelada" />
+                            <Button onPress={handleSubmit} style={styles.floatButton} title="Criar Pelada" />
                         </View>
                     )}
                 </Formik>
@@ -125,7 +145,7 @@ const styles = StyleSheet.create({
     },
     players: {
         overflow: 'scroll',
-        maxHeight: windowHeight - 216,
+        maxHeight: windowHeight - 250,
         player: {
             position: 'relative',
         }
